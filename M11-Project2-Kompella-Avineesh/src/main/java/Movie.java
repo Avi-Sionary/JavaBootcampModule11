@@ -27,7 +27,7 @@ public class Movie {
 
     }
 
-    public void calcProfit() { this.profit = this.moneyEarned - this.moneySpent; }
+    public void calcProfit() { this.profit = this.budget - this.moneySpent + this.moneyEarned; }
 
     public void payDay() {
 
