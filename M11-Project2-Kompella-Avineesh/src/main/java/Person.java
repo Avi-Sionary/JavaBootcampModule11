@@ -5,11 +5,9 @@ public abstract class Person {
     protected double earned;
 
     public Person(String name, double payRate) {
-
         this.name = name;
         this.payRate = payRate;
         this.earned = 0;
-
     }
 
     public String getName() {

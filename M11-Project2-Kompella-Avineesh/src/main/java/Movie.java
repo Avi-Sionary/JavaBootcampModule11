@@ -24,28 +24,37 @@ public class Movie {
         this.director = director;
         this.actors = actors;
         this.crewMembers = crewMembers;
+    }
+
+    public void calcProfit() {
+
+        this.profit = this.budget - this.moneySpent + this.moneyEarned; // Based off formula mentioned in class
 
     }
 
-    public void calcProfit() { this.profit = this.budget - this.moneySpent + this.moneyEarned; }
-
     public void payDay() {
 
-        double addToSpent = 0;
+        this.calcProfit(); // Calling this method to calculate Director's pay later
 
+        double addToSpent = 0; // Total amount that all people who worked on the movie are paid
+
+        // Director payout
         this.director.getPaid(profit);
         addToSpent += director.earned;
 
+        // Actors' payout
         for (int a = 0; a < this.actors.length; a++) {
-            this.actors[a].getPaid(profit);
+            this.actors[a].getPaid(this.actors[a].payRate);
             addToSpent += this.actors[a].earned;
         }
 
+        // Crew members' (including PA) payout
         for (int c = 0; c < this.crewMembers.length; c++) {
-            this.crewMembers[c].getPaid(profit);
+            this.crewMembers[c].getPaid(this.crewMembers[c].payRate);
             addToSpent += this.crewMembers[c].earned;
         }
 
+        // Add all payouts to total production cost of movie
         this.moneySpent += addToSpent;
 
     }
